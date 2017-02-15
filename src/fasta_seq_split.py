@@ -20,7 +20,7 @@ def run(infasta, outfold, id_include):
     assert outfold, "No output folder given. Exiting ...."
     assert path.isfile(infasta), "Given input file doesn't exist. Exiting ..."
     assert SeqIO.parse(infasta, "fasta"), "Input is not fasta. Exiting ...."
-    assert makedirs(outfold, exist_ok=True), "Unable to create given folder.\
+    assert not makedirs(outfold, exist_ok=True), "Unable to create given folder.\
         Exiting ...."
     if id_include:
         for rec in SeqIO.parse(infasta, "fasta"):
