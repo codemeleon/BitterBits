@@ -19,6 +19,7 @@ from os import path
               type=bool, default=True, show_default=True)
 def run(cdhit_out, out, sorttab):
     """Convert cdhit output to table."""
+    # Expecting no empty line.
     if not cdhit_out:
         click.echo("Imputfile is not given. Exiting ...")
         exit(1)
@@ -28,35 +29,80 @@ def run(cdhit_out, out, sorttab):
         exit(1)
     try:
         SeqIO.parse(cdhit_out, "fasta")
-        table = {'cluster':[]}
-        seq_sizes = {}
+        table = {}
+        seq_sizes = []
+        samp_count = []
+        seq_min, seq_max, seq_mean, seq_median, seq_sd = [[]] * 5
+        seq_count = []
+        local_sets = {}
         current_cluster = 0
-        seq_count = {}
-        samp_count = {}
+        samp_list = []
         with open(cdhit_out) as fin:
             for line in fin:
                 if line[0] == '>':
-                    cluster = line[1:-1].replace(" ", "_")
+                    for k in local_sets:
+                        if k not in table:
+                            table[k] = ['*'] * (current_cluster - 1)
+
+                        table[k].append(local_sets[k])
+                        # print(table)
+                    for k in set(table.keys()) - set(local_sets.keys()):
+                        table[k].append('*')
+                    if len(seq_sizes):
+                        samp_count.append(len(set(samp_list)))
+                        samp_list = []
+                        seq_count.append(len(seq_sizes))
+                        seq_min.append(min(seq_sizes))
+                        seq_max.append(max(seq_sizes))
+                        seq_mean.append(np.mean(seq_sizes))
+                        seq_median.append(np.median(seq_sizes))
+                        seq_sd.append(np.std(seq_sizes))
+
+                    seq_sizes = []
+                    local_sets = {}
                     current_cluster += 1
-                    seq_sizes[cluster] = []
-                    table["cluster"].append(cluster)
                     continue
                 data = line.split()
                 sequenceid = data[2][1:-3]
                 seqsize = int(data[1][:-3])
-                seq_sizes[cluster].append(seq_sizes)
+                seq_sizes.append(seqsize)
                 samp = '_'.join(sequenceid.split("_")[:-1])
-                if samp not in table:
-                    # TODO : A lot 
-                    table[samp] = ['*'] * (current_cluster - 1)
-                    table[samp].append(sequenceid)
+                samp_list.append(samp)
+                if samp in local_sets:
+                    local_sets[samp] += ",%s:%d" % (sequenceid, seqsize)
+                else:
+                    local_sets[samp] = "%s:%d" % (sequenceid, seqsize)
                     # include the possibilities of multiple sequences
-                print(data)
+            for k in local_sets:
+                if k not in table:
+                    table[k] = ['*'] * (current_cluster - 1)
+                table[k].append(local_sets[k])
+
+            for k in set(table.keys()) - set(local_sets.keys()):
+                table[k].append('*')
+        if seq_sizes:
+            samp_count.append(len(set(samp_list)))
+            seq_count.append(len(seq_sizes))
+            seq_min.append(min(seq_sizes))
+            seq_max.append(max(seq_sizes))
+            seq_mean.append(np.mean(seq_sizes))
+            seq_median.append(np.median(seq_sizes))
+            seq_sd.append(np.std(seq_sizes))
+            # local_sets = {}
+        # print(len(samp_count), len(seq_count))
+        table["samp_count"] = samp_count
+        table["seq_count"] = seq_count
+        table["min"] = seq_min
+        table["max"] = seq_max
+        table["sd"] = seq_sd
+        table["median"] = seq_median
+        table["mean"] = seq_mean
+        # for k in table:
+        print(table['mean'])
+        # pd.DataFrame.from_dict(table)
     except IOError:
         click.echo("Given file is not in Fasta format. Exiting ...")
         exit(1)
-
-    pass
 
 
 if __name__ == '__main__':
