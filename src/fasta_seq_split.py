@@ -13,7 +13,7 @@ import click
 @click.option("-outfold", help="Output folder", type=str,
               default=None, show_default=True)
 @click.option("-id_include", help="Including id in file", type=bool,
-              deafult=True, show_default=True)
+              default=True, show_default=True)
 def run(infasta, outfold, id_include):
     """Separate fasta sequence in difererent files."""
     assert infasta, "No input file given. Exiting ...."
