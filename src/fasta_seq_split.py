@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+"""Splits fasta sequencs from a file."""
+
 from Bio import SeqIO
 from os import path, makedirs
 import click
@@ -28,7 +32,5 @@ def run(infasta, outfold, id_include):
                 fout.write("%s\n" % rec.seq)
 
 
-
-
-if __name__== '__main__':
+if __name__ == '__main__':
     run()
