@@ -14,7 +14,11 @@ def amino2codon(aa, nuc):
         if a == '-':
             codon += '---'
         else:
-            codon += nuc[3*n: 3*(n+1)]
+            code = nuc[3*n: 3*(n+1)]
+            if len(code) == 3:
+                codon += code
+            else:
+                codon += code + '-' * (3 - len(code)) 
             n += 1
     return codon
 
