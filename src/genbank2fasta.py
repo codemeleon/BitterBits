@@ -1,4 +1,4 @@
-#!/usr/binenv python
+##!/usr/binenv python
 
 from Bio import SeqIO
 import click
@@ -10,55 +10,50 @@ from os import path
               show_default=True)
 @click.option("--outputfasta", help="Output fasta file", type=str,
               default=None, show_default=True)
-@click.option("--seq", help="Type of sequence",
-              type=click.Choice(["genome","gene","CDS","protein"]),
+@click.option("--seqtype", help="Type of sequence",
+              type=click.Choice(["genome", "gene", "CDS", "protein"]),
               default='genome', show_default=True)
-def run(inputdb, outputfasta, seq):
+@click.option("--seqid", help="Sequence id", type=click.Choice(["protein_id"]),
+              default="protein_id", show_default=True)
+def run(inputgb, outputfasta, seqtype, seqid):
     "Extract sequence from genbank file"
-    if not inputdb:
-        click.echo("Input genbank file not given. Exiting ....")
-        exit(1)
-    elif not outputfasta:
-        click.echo("Output fasta file not given. Exiting ....")
-        exit(1)
+    assert inputgb, "Input genbank file not given. Exiting ...."
+    assert outputfasta, "Output fasta file not given. Exiting ...."
+
+    # try:
+    if seqtype == 'genome':
+        SeqIO.convert(inputgb, "genbank", outputfasta, "fasta")
     else:
-        pass
-    try:
-        if seq == 'genome':
-            SeqIO.convert(inputgb, "genbank", outputfasta, "fasta")
-        else:
-            record = SeqIO.read(inputgb, "genbank")
+        outputfasta = open(outputfasta, "w")
+        records = SeqIO.parse(inputgb, "genbank")
+        for record in records:
             for feature in record.features:
+                # print("Anmol", feature.type)
                 if feature.type in ["gene", "CDS"]:
                     seq = record.seq[feature.location.start:
                                      feature.location.end]
                     if feature.location.strand == -1:
                         seq = seq.reverse_complement()
                     seq = str(seq).upper()
-                    if feature.type == "CDS" and seq == "protein":
-                        outputfasta.write(">%s\t%s\t%s\n%s\n\n" %
-                                          (feature.qualifiers["locus_tag"][0],
-                                           feature.qualifiers["gene"][0] if
-                                           "gene" in feature.qualifiers.keys()
-                                           else "",
-                                           feature.qualifiers["product"][0] if
-                                           "product" in
-                                           feature.qualifiers.keys()
-                                           else "",
-                                           str(feature.qualifiers[
-                                               "translation"][0])))
-                    elif feature.type == seq:
-                        outputfasta.write(">%s\t%s\t%s\n%s\n\n" %
-                                          (feature.qualifiers["locus_tag"][0],
-                                           feature.qualifiers["gene"][0] if
-                                           "gene" in feature.qualifiers.keys()
-                                           else "",
-                                           feature.qualifiers["product"][0] if
-                                           "product" in
-                                           feature.qualifiers.keys() else "",
-                                           seq))
-    except:
-        pass
+                    # if feature.type == "CDS":
+                    if ((seqtype in ['CDS', 'protein']) and
+                        (('translation' not in feature.qualifiers.keys()) or
+                         ('protein_id'  not in feature.qualifiers.keys()))):
+                        continue
+
+                    if feature.type == "CDS":
+                        if seqtype == "protein":
+                            outputfasta.write(">%s\n%s\n\n" %(
+                                feature.qualifiers["protein_id"][0],
+                                str(feature.qualifiers["translation"][0])))
+
+                        elif seqtype == "CDS":
+                            outputfasta.write(">%s\n%s\n\n" % (
+                                feature.qualifiers["protein_id"][0],
+                                               seq))
+        outputfasta.close()
+    # except:
+        # ""
         # Do something silly
 
 
