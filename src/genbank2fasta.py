@@ -15,7 +15,9 @@ from os import path
               default='genome', show_default=True)
 @click.option("--seqid", help="Sequence id", type=click.Choice(["protein_id"]),
               default="protein_id", show_default=True)
-def run(inputgb, outputfasta, seqtype, seqid):
+@click.option("--fileprefix", help="Add file name separated iwth ___ in\
+              sequence name", type=bool, default=False, show_default=True)
+def run(inputgb, outputfasta, seqtype, seqid, fileprefix):
     "Extract sequence from genbank file"
     assert inputgb, "Input genbank file not given. Exiting ...."
     assert outputfasta, "Output fasta file not given. Exiting ...."
@@ -44,15 +46,26 @@ def run(inputgb, outputfasta, seqtype, seqid):
 
                     if feature.type == "CDS":
                         if seqtype == "protein":
-                            outputfasta.write(">%s\n%s\n\n" % (
-                                feature.qualifiers["protein_id"][0],
-                                str(feature.qualifiers["translation"][0])))
+                            if fileprefix:
+                                outputfasta.write(">%s___%s\n%s\n\n" % (
+                                    input_file_id,
+                                    feature.qualifiers["protein_id"][0],
+                                    str(feature.qualifiers["translation"][0])))
+                            else:
+                                outputfasta.write(">%s\n%s\n\n" % (
+                                    feature.qualifiers["protein_id"][0],
+                                    str(feature.qualifiers["translation"][0])))
 
                         elif seqtype == "CDS":
-                            outputfasta.write(">%s___%s\n%s\n\n" % (
-                                input_file_id,
-                                feature.qualifiers["protein_id"][0],
-                                seq))
+                            if fileprefix:
+                                outputfasta.write(">%s___%s\n%s\n\n" % (
+                                    input_file_id,
+                                    feature.qualifiers["protein_id"][0],
+                                    seq))
+                            else:
+                                outputfasta.write(">%s\n%s\n\n" % (
+                                    feature.qualifiers["protein_id"][0],
+                                    seq))
         outputfasta.close()
 
 
