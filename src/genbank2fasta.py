@@ -25,6 +25,7 @@ def run(inputgb, outputfasta, seqtype, seqid):
         SeqIO.convert(inputgb, "genbank", outputfasta, "fasta")
     else:
         outputfasta = open(outputfasta, "w")
+        input_file_id = path.split(inputgb)[1].split('.')[0]
         records = SeqIO.parse(inputgb, "genbank")
         for record in records:
             for feature in record.features:
@@ -38,23 +39,21 @@ def run(inputgb, outputfasta, seqtype, seqid):
                     # if feature.type == "CDS":
                     if ((seqtype in ['CDS', 'protein']) and
                         (('translation' not in feature.qualifiers.keys()) or
-                         ('protein_id'  not in feature.qualifiers.keys()))):
+                         ('protein_id' not in feature.qualifiers.keys()))):
                         continue
 
                     if feature.type == "CDS":
                         if seqtype == "protein":
-                            outputfasta.write(">%s\n%s\n\n" %(
+                            outputfasta.write(">%s\n%s\n\n" % (
                                 feature.qualifiers["protein_id"][0],
                                 str(feature.qualifiers["translation"][0])))
 
                         elif seqtype == "CDS":
-                            outputfasta.write(">%s\n%s\n\n" % (
+                            outputfasta.write(">%s___%s\n%s\n\n" % (
+                                input_file_id,
                                 feature.qualifiers["protein_id"][0],
-                                               seq))
+                                seq))
         outputfasta.close()
-    # except:
-        # ""
-        # Do something silly
 
 
 if __name__ == '__main__':
