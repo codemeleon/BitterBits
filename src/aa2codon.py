@@ -18,7 +18,7 @@ def amino2codon(aa, nuc):
             if len(code) == 3:
                 codon += code
             else:
-                codon += code + '-' * (3 - len(code)) 
+                codon += code + '-' * (3 - len(code))
             n += 1
     return codon
 
