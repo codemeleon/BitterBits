@@ -34,12 +34,18 @@ def paralogs_separator(seq_ids, sequences_df):
     to_return = []
     for k in new_groups:
         qlist = []
+        qdict = {}
         for l in new_groups[k]:
-            qlist.append(l.split('___')[0])
+            tid = l.split('___')[0]
+            qlist.append(tid)
+            if tid in qdict:
+                qdict[tid].append(l)
+            else:
+                qdict[tid] = [l]
         if len(set(qlist)) == len(qlist):
             to_return.append(new_groups[k])
         else:
-            to_return += paralogs_separator(new_groups[k],
+            to_return += paralogs_separator(qdict,
                                             sequences_df[new_groups[k]])
 
     return to_return
@@ -71,7 +77,7 @@ def run(ofile_folder, cluster_aln_folder, outfolder):
         Exiting ..."
     assert path.isdir(cluster_aln_folder), "Cluster Alignment folder doesn't\
         exit. Exiting ..."
-    assert not makedirs(outfolder), "Unable to create output folder.\
+    assert not makedirs(outfolder, exist_ok=True), "Unable to create output folder.\
         Exiting ....."
 
     seq_samp = {}
@@ -113,7 +119,7 @@ def run(ofile_folder, cluster_aln_folder, outfolder):
             sequences_df = pd.DataFrame.from_dict(sequences_df)
             clusters = paralogs_separator(seq_ids, sequences_df)
             for i, cluster in enumerate(clusters):
-                with open("%s/%s_%d.aln" % (outfolder, i, file_id),
+                with open("%s/%s_%d.aln" % (outfolder, file_id, i),
                           "w") as fout:
                     for k in cluster:
                         fout.write(">%s\n%s\n" % (k, sequences[k]))
