@@ -44,7 +44,7 @@ def run(alnfold, outfile, samp_id_file):
             genome_dict[samp] += str(rec.seq)
 
         for rec in samples - set(reported):
-            genome_dict += '-' * alignment.get_alignment_length()
+            genome_dict[rec] += '-' * alignment.get_alignment_length()
 
     with open(outfile, "w") as fout:
         for k in genome_dict:
