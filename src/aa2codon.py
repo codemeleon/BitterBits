@@ -26,7 +26,7 @@ def amino2codon(aa, nuc):
               type=str, default=None, show_default=True)
 @click.option("--cdsalnfold", help="Codon alignment output folder",
               type=str, default=None, show_default=True)
-@click.option("--ofilext", default="Output File extension",
+@click.option("--ofilext", help="Output File extension",
               type=str, default="cds", show_default=True)
 def run(aaalnfold, nucfold, cdsalnfold, ofilext):
     """Code generate codon alignment base on amino acid alignments."""
