@@ -47,12 +47,8 @@ def run(alnfold, outfile, samp_id_file):
             genome_dict += '-' * alignment.get_alignment_length()
 
     with open(outfile, "w") as fout:
-        for k in genome:
-            fout.write(">%s\n%s\n" % (k, genome[k]))
-
-
-
-
+        for k in genome_dict:
+            fout.write(">%s\n%s\n" % (k, genome_dict[k]))
 
 
 if __name__ == '__main__':
