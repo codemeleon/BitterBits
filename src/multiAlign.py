@@ -12,8 +12,7 @@ from Bio import SeqIO
 
 
 def is_tool(name):
-    "Repopring if the tool exist in the path"
-
+    """Repopring if the tool exist in the path."""
     # Code taken from
     # "http://stackoverflow.com/questions/11210104/check-if-a-program-exists-from-a-python-script"
     try:
@@ -26,7 +25,7 @@ def is_tool(name):
 
 
 def find_duplicates(fl):
-    'Considering sequences are in all upper or lower case'
+    """Considering sequences are in all upper or lower case."""
     'File is in fasta format'
     seq_dict = SeqIO.to_dict(SeqIO.parse(fl, 'fasta'))
     df = pd.DataFrame.from_dict({'name': list(seq_dict.keys()),
@@ -126,8 +125,8 @@ def aligner(infile=None, outfile=None, alntool='clustalw', toolpath=None,
               "selected program Please keepin mind, output must be fasta",
               type=str, default="", show_default=True)
 def run(i, o, alntool, toolpath, additional_arg):
-    "This program is to boost the speed of alignments where sequences exists \
-    in multiple copies"
+    r"""Program boosts the speed of alignments where sequences exists \
+    in multiple copies."""
     aligner(i, o, alntool, toolpath, additional_arg)
 
 
