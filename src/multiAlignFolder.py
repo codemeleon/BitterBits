@@ -22,12 +22,15 @@ def runner(outfold, infile):
               type=str, default=None, show_default=True)
 @click.option("-ncor", help="Number of cores used in parallel",
               type=int, default=1, show_default=True)
-def run(inf, outf, ncor):
+@click.option("-inext", help="Inpout file extension",
+              type=str, default="fasta", show_default=True)
+def run(inf, outf, ncor, inext):
     """Run multiAlign.py over a folder using multple core."""
     # TODO: add errors
     pool = Pool(ncor)
     func = partial(runner, outf)
-    pool.map(func, glob("%s/*" % inf))
+    file_list = glob("%s/*.%s" % (inf, inext))
+    pool.map(func, file_list)
 
 
 if __name__ == '__main__':
