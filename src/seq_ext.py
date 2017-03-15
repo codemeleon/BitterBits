@@ -57,7 +57,7 @@ def run(seqfile, seqfmt, seqid, start, end, rvcomp, stdout, outfile):
                 ofile.write(">%s\n%s\n" % (seqid, seq))
         else:
             click.echo(">%s\n%s\n" % (seqid, seq))
-    except FileExistsError:
+    except:
         click.echo("Input file is not in given format. Exiting ....")
         exit(1)
 
