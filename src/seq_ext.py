@@ -12,7 +12,7 @@ from os import path
 @click.option("-seqid", help="Sequence Id", type=str, default=None,
               show_default=True)
 @click.option("-start", help="Start position (0 index based)",
-              type=int, default=None, show_default=True)
+              type=int, default=0, show_default=True)
 @click.option("-end", help="End position (0 index based)",
               type=int, default=None, show_default=True)
 @click.option("-rvcomp", help="Reverse complement (orly for DNA and RNA)",
@@ -30,18 +30,23 @@ def run(seqfile, seqfmt, seqid, start, end, rvcomp, stdout, outfile):
         click.echo("Sequence id not given. Exiting ....")
         exit(1)
     if not start:
-        click.echo("Start position not given. Exiting ....")
+        click.echo("Start position not given. Considering from start of the\
+                   sequences")
+        start = 0
         exit(1)
     if not end:
-        click.echo("End position not given. Exiting ....")
-        exit(1)
+        click.echo("End position not given. Considering till end of the\
+                   sequence")
     if end < start:
         click.echo("End has lower value than start. Exiting ....")
         exit(1)
     try:
         seq = SeqIO.to_dict(SeqIO.parse(seqfile, seqfmt))
         try:
-            seq = seq[seqid][start:end]
+            if not end:
+                seq = seq[seqid][start:]
+            else:
+                seq = seq[seqid][start:end]
         except IOError:
             click.echo("Given sequence id is not in input file. Exiting")
             exit(1)
