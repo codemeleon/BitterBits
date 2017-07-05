@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+import matplotlib
+matplotlib.use('Agg')
 import click
 from os import path
 import pandas as pd
 from pylab import *
-import re
+# import re
 
 
 def ranges(p):
