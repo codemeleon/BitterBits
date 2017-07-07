@@ -18,6 +18,8 @@ from tempfile import mktemp
               show_default=True)
 @click.option("-rv", help="Reverse reads file symbol", type=str, default='_2',
               show_default=True)
+@click.option("-fext", help="File extention", type=str, default='fastq.gz',
+              show_default=True)
 @click.option("-ncor", help="Number of CPU used", type=int, default=1,
               show_default=True)
 @click.option("-ofile", help="Output csv file", type=str,
@@ -25,30 +27,31 @@ from tempfile import mktemp
 @click.option("-best", help="Best hit based. Else All", type=bool,
               default=True, show_default=True)
 ## Add other option to generate differet kinds of file
-def run(ref, fqf, rt, fw, rv, ncor, ofile, best):
+def run(ref, fqf, rt, fw, rv, fext, ncor, ofile, best):
     '''in silico serotyping using short reads and CPS reference.'''
     # Generate index
     # Expect gzipped files
-    process = Popen(["bowtie2-build", "--large-index", ref, ref],
-                    stdout=PIPE, stderr=PIPE)
-    stdout, stderr = process.communicate()
+    # process = Popen(["bowtie2-build", "--large-index", ref, ref],
+    #                 stdout=PIPE, stderr=PIPE)
+    # stdout, stderr = process.communicate()
     dfs = []
     tmp_file = mktemp()#dir="/tmp"
-    for fl in glob("%s/*%s*" % (fqf, fw)):
-        pathbs = fl.split(fw)[0]
-        strain = path.split(fl)[1].split(fw)[0]
-        # print(fl, fl.replace(fw, rv))
+    for fl in glob("%s/*%s.%s" % (fqf, fw, fext)):
+        pathbs = fl.split("%s.%s" % (fw, fext))[0]
+        revpath = "%s%s.%s" % (pathbs, rv, fext)
+        strain = path.split(fl)[1].split("%s.%s" % (fw, fext))[0] # Replace this with somthing better
+        # print(fl, revpath)
         if not best:
             process = Popen(["bowtie2", "--end-to-end", "--very-sensitive",
                              "-a", "-N", "1", "-L", "4", "-x", ref, "-1", fl,
-                              "-2", fl.replace(fw, rv), '-p', str(ncor),
-                             "-S", "%s.sam" % tmp_file],
+                              "-2", revpath,
+                              '-p', str(ncor), "-S", "%s.sam" % tmp_file],
                             stdout=PIPE, stderr=PIPE)
         else:
             process = Popen(["bowtie2", "--end-to-end", "--very-sensitive",
                               "-N", "1", "-L", "4", "-x", ref, "-1", fl,
-                              "-2", fl.replace(fw, rv), '-p', str(ncor),
-                             "-S", "%s.sam" % tmp_file],
+                              "-2", revpath,
+                              '-p', str(ncor), "-S", "%s.sam" % tmp_file],
                             stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
         process = Popen(["samtools", "view","-bS", "-o", "%s.bam" % tmp_file,
