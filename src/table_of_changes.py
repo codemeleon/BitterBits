@@ -27,7 +27,7 @@ def run(alnfold, outfile, maxmaj):
         # t_seq_df = {}
         for rec in SeqIO.parse(fl, "fasta"):
             t_df["_".join(rec.id.split("_")[:-1])] = list(str(rec.seq))
-            # TODO: Modify split part based on your need in future
+            # TODO:0 Modify split part based on your need in future
             # Currently based on  sanger's structure
         t_df = pd.DataFrame.from_dict(t_df)
         # print(t_df)

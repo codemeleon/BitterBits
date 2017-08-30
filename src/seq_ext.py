@@ -17,11 +17,11 @@ from os import path
               type=int, default=None, show_default=True)
 @click.option("-rvcomp", help="Reverse complement (orly for DNA and RNA)",
               type=bool, default=False, show_default=True)
-@click.option("--stdout", help="Print on screen", type=bool,
-              default=True, show_default=True)
-@click.option("-outfile", help="Output file. Valide when stdout==False",
+@click.option("-altid", help="Alternative output sequence id", type=str,
               default=None, show_default=True)
-def run(seqfile, seqfmt, seqid, start, end, rvcomp, stdout, outfile):
+@click.option("-outfile", help="Output file. STDOUT, if not given",
+              default=None, show_default=True)
+def run(seqfile, seqfmt, seqid, start, end, rvcomp, altid, outfile):
     """Extract genomic sequences for given range."""
     if not seqfile:
         click.echo("Sequence file not given. Exiting ....")
@@ -51,7 +51,9 @@ def run(seqfile, seqfmt, seqid, start, end, rvcomp, stdout, outfile):
             exit(1)
         if rvcomp:
             seq = seq.reverse_complement()
-        if not stdout:
+        if altid:
+            seqid = altid
+        if outfile:
             with open(outfile, "w") as ofile:
                 ofile.write(">%s\n%s\n" % (seqid, seq))
         else:
