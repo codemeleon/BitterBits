@@ -12,7 +12,7 @@ from Bio import SeqIO
     '-fa', help="Output fastq", type=str, default=None, show_default=True)
 def run(fq, fa):
     """Converts fastq to fasta."""
-    if not path.exits(fq) or not path.isfile(fq):
+    if not path.exists(fq) or not path.isfile(fq):
         exit(
             "Given fastq file doesn't exist or it is not a file. Exiting . . ."
         )
