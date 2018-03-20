@@ -7,9 +7,11 @@ from os import path
 @click.command()
 @click.option("-tbf", help="Tabfile containing two columns", type=str,
               default=None, show_default=True)
+@click.option("-tbh", help="Table header", type=bool, default=True,
+              show_default=True)
 @click.option("-clf", help="Clusterfile Output", type=str, default=None,
               show_default=True)
-def run(tbf, clf):
+def run(tbf, tbh, clf):
     if not tbf:
         exit("Input tab file is not given. Exiting . . . . .")
     if not clf:
@@ -18,7 +20,10 @@ def run(tbf, clf):
         exit("Given input file path either doesn't exist or it is not a file"
              " Exiting ....")
     # try:
-    data = pd.read_table(tbf)
+    if tbh:
+        data = pd.read_table(tbf)
+    else:
+        data = pd.read_table(tbf, header=None)
     graph = nx.Graph()
     graph.add_edges_from(data.values.tolist())
     connected_lists = nx.algorithms.components.connected.connected_components(graph)
