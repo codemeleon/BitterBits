@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Find commands."""
-
+print("Anmol")
 import click
 import sqlite3
 from os import path, makedirs
@@ -25,7 +25,7 @@ def helper(program, kind):
     return info
 
 
-# TODO: need to add regular expression and multisearch
+# TODO:60 need to add regular expression and multisearch
 
 @click.command()
 @click.option("-upgrade", help="Upgrade the database", type=bool,
