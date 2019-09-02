@@ -5,13 +5,13 @@
 conda config --add channels r
 conda config --add channels bioconda
 
-conda install -c anaconda gcc
+# conda install -c anaconda gcc
 
 # Adding Tool and components
 
 conda install blast blat mafft muscle \
 	raxml fasttree \
-	bwa bowtie2 mummer kmc\
+	bwa bowtie2 mummer kmc emboss bedtools \
 	virsorter \
 	sra-tools spades picard fastqc kraken kraken2 clustalw prokka \
 	samtools bcftools unicycler smalt \
