@@ -6,10 +6,9 @@ cp ./rpkginstall ~/bin/
 
 rpkginstall dplyr
 rpkginstall ggplot
-
 rpkginstall ggtree
-# rpkginstall
-# rpkginstall
+rpkginstall devtools
+rpkginstall tidyverse
 # rpkginstall
 # rpkginstall
 # rpkginstall

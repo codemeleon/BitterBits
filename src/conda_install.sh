@@ -17,7 +17,8 @@ conda install blast blat mafft muscle \
 	samtools bcftools unicycler smalt \
 	biopython ruffus pysam \
 	roary ariba \
-	r r-irkernel
+	r r-irkernel \
+	weblogo
 
 conda install -c conda-forge nodejs
 
