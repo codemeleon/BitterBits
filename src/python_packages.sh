@@ -5,4 +5,10 @@ pip install ete3 \
 	scikit-bio \
 	statsmodels \
 	scipy \
-	numpy
+	numpy \
+	qgrid
+
+# qgrid
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
+jupyter labextension install qgrid2
+
