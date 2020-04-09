@@ -9,6 +9,6 @@ rpkginstall ggplot
 rpkginstall ggtree
 rpkginstall devtools
 rpkginstall tidyverse
-# rpkginstall
+rpkginstall esquisse # https://github.com/dreamRs/esquisse
 # rpkginstall
 # rpkginstall

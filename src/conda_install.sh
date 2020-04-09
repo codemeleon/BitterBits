@@ -4,6 +4,7 @@
 
 conda config --add channels r
 conda config --add channels bioconda
+conda config --add channels pytorch
 
 # conda install -c anaconda gcc
 
@@ -18,10 +19,11 @@ conda install blast blat mafft muscle \
 	biopython ruffus pysam \
 	roary ariba \
 	r r-irkernel \
-	weblogo
+	weblogo \
+	plotnine
 
 conda install -c conda-forge nodejs
-
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 pip install recipy ete3 recipy iva
 
