@@ -5,10 +5,16 @@ cp ./rpkginstall ~/bin/
 
 
 rpkginstall dplyr
-rpkginstall ggplot
+rpkginstall ggplot2
 rpkginstall ggtree
 rpkginstall devtools
 rpkginstall tidyverse
 rpkginstall esquisse # https://github.com/dreamRs/esquisse
-# rpkginstall
-# rpkginstall
+rpkginstall ggThemeAssist
+rpkginstall ggedit
+rpkginstall reticulate
+rpkginstall plumber
+rpkginstall flexdashboard
+rpkginstall purrr
+rpkginstall shiny
+rpkginstall miniUI
