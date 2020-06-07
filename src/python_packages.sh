@@ -8,7 +8,11 @@ pip install ete3 \
 	numpy \
 	qgrid \
 	catscatter \
-	torch
+	plotly \
+	cufflinks \
+	torch \
+	# Stats
+	pingouin
 
 # https://raw.githubusercontent.com/myrthings/catscatter/master/catscatter.py
 

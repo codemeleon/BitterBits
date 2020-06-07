@@ -18,3 +18,4 @@ rpkginstall flexdashboard
 rpkginstall purrr
 rpkginstall shiny
 rpkginstall miniUI
+rpkginstall phylotools
