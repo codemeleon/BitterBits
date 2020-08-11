@@ -19,3 +19,5 @@ rpkginstall purrr
 rpkginstall shiny
 rpkginstall miniUI
 rpkginstall phylotools
+rpkginstall ggsignif
+rpkginstall gggenes
