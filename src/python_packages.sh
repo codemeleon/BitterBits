@@ -17,9 +17,21 @@ pip install ete3 \
 	scikit-posthocs \
 	statannot \
 	ipython-autoimport \
-	autoplotter
+	black \
+	autoplotter \
+	pycaret \
+	openrefine \
+	pandasgui \
+	sweetviz \
+	voila-gridstack \
+	pyjanitor \
+    nbterm \
+    nafas \
+	jedi-language-server
+
 
 # https://raw.githubusercontent.com/myrthings/catscatter/master/catscatter.py
+# https://github.com/FePhyFoFum/PyPHLAWD
 
 # qgrid
 jupyter nbextension enable --py --sys-prefix widgetsnbextension

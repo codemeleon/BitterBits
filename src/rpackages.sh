@@ -21,3 +21,9 @@ rpkginstall miniUI
 rpkginstall phylotools
 rpkginstall ggsignif
 rpkginstall gggenes
+
+# remotes::install_github("ThinkR-open/remedy")
+# install.packages("colourpicker")
+# install.packages("ggThemeAssist")
+# devtools::install_github("dracodoc/mischelper")
+# devtools::install_github("tylermorganwall/rayshader")
