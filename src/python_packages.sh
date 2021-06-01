@@ -27,6 +27,9 @@ pip install ete3 \
 	pyjanitor \
     nbterm \
     nafas \
+    pythran \
+    metapub \ # For pubid to doi
+    biocode \ # Useful for filetype conversion
 	jedi-language-server
 
 

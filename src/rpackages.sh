@@ -22,6 +22,28 @@ rpkginstall phylotools
 rpkginstall ggsignif
 rpkginstall gggenes
 
+# For Metagenomics course
+rpkginstall phyloseq
+rpkginstall vegan
+rpkginstall tidyverse
+rpkginstall here
+rpkginstall dada2
+rpkginstall decontam
+rpkginstall ggforce
+rpkginstall ggtext
+rpkginstall magrittr
+rpkginstall ggrepel
+rpkginstall RColorBrewer
+rpkginstall scales
+rpkginstall Rmarkdown
+rpkginstall metagenomeSeq
+rpkginstall fpc
+rpkginstall ggdendro
+rpkginstall dendextend
+rpkginstall cowplot
+
+
+
 # remotes::install_github("ThinkR-open/remedy")
 # install.packages("colourpicker")
 # install.packages("ggThemeAssist")
