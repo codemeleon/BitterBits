@@ -3,7 +3,6 @@ chmod +x rpkginstall
 
 cp ./rpkginstall ~/bin/
 
-
 rpkginstall dplyr
 rpkginstall ggplot2
 rpkginstall ggtree
@@ -21,7 +20,8 @@ rpkginstall miniUI
 rpkginstall phylotools
 rpkginstall ggsignif
 rpkginstall gggenes
-
+rpkginstall ggnewscale
+rpkginstall phylocanvas
 # For Metagenomics course
 rpkginstall phyloseq
 rpkginstall vegan
@@ -41,8 +41,8 @@ rpkginstall fpc
 rpkginstall ggdendro
 rpkginstall dendextend
 rpkginstall cowplot
-
-
+rpkginstall micropan
+rpkginstall ggdendro
 
 # remotes::install_github("ThinkR-open/remedy")
 # install.packages("colourpicker")

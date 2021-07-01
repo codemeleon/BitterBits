@@ -11,16 +11,17 @@ conda config --add channels pytorch
 # Adding Tool and components
 
 conda install blast blat mafft muscle \
-	raxml fasttree \
-	bwa bowtie2 mummer kmc emboss bedtools \
-	virsorter \
-	sra-tools spades picard fastqc kraken kraken2 clustalw prokka \
-	samtools bcftools unicycler smalt \
-	biopython ruffus pysam \
-	roary ariba \
-	r r-irkernel \
-	weblogo \
-	plotnine
+    raxml fasttree \
+    bwa bowtie2 mummer kmc emboss bedtools \
+    virsorter \
+    sra-tools spades picard fastqc kraken kraken2 clustalw prokka \
+    samtools bcftools unicycler smalt \
+    biopython ruffus pysam \
+    roary ariba \
+    r r-irkernel \
+    weblogo \
+    plotnine \
+    keras
 
 conda install -c conda-forge nodejs
 conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
@@ -32,7 +33,6 @@ conda activate py365
 conda install ariba
 conda deactivate
 # added /.anmol/anaconda3/envs/py365/bin/ariba in /etc/bash.bashrc
-
 
 # conda create -n py27 python=2.7.5
 conda activate py27

@@ -22,6 +22,7 @@ pip install ete3 \
 	pycaret \
 	openrefine \
 	pandasgui \
+    visidata \
 	sweetviz \
 	voila-gridstack \
 	pyjanitor \

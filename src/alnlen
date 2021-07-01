@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+'''This script report the alignment length.
+Command: alnlen <fasta file>
+'''
+
+
+from sys import argv
+
+from Bio import AlignIO
+
+try:
+    aln = AlignIO.read(argv[1], "fasta")
+    print("Alignment Length: ", aln.get_alignment_length())
+except Exception as e:
+    raise e
