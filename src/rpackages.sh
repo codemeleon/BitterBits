@@ -1,7 +1,9 @@
 # https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
-chmod +x rpkginstall
-
+chmod u+x rpkginstall
 cp ./rpkginstall ~/bin/
+
+chmod u+x rbiocinstall
+cp ./rbiocinstall ~/bin/
 
 rpkginstall dplyr
 rpkginstall ggplot2
@@ -43,6 +45,10 @@ rpkginstall dendextend
 rpkginstall cowplot
 rpkginstall micropan
 rpkginstall ggdendro
+
+# Biocundoctor packages
+
+rbiocinstall msa
 
 # remotes::install_github("ThinkR-open/remedy")
 # install.packages("colourpicker")
