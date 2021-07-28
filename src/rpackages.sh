@@ -45,6 +45,8 @@ rpkginstall dendextend
 rpkginstall cowplot
 rpkginstall micropan
 rpkginstall ggdendro
+rpkginstall plotly
+rpkginstall readxl
 
 # Biocundoctor packages
 
