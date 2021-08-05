@@ -9,6 +9,7 @@ pip install ete3 \
     qgrid \
     catscatter \
     plotly \
+    django-stubs \
     cufflinks \
     torch
 # Stats
