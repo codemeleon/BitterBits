@@ -10,6 +10,7 @@ pip install ete3 \
     catscatter \
     plotly \
     django-stubs \
+    pandas-stubs \
     cufflinks \
     torch
 # Stats
