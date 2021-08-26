@@ -24,6 +24,9 @@ rpkginstall ggsignif
 rpkginstall gggenes
 rpkginstall ggnewscale
 rpkginstall phylocanvas
+rpkginstall tidymodels
+rpkginstall modeltime
+rpkginstall timetk
 # For Metagenomics course
 rpkginstall phyloseq
 rpkginstall vegan
