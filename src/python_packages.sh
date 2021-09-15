@@ -32,9 +32,10 @@ pingouin \
     word2number \
     nafas \
     pythran \
-    metapub \ # For pubid to doi
-biocode \ # Useful for filetype conversion
-jedi-language-server
+    metapub \
+    biocode \
+    PyPaperBot \
+    jedi-language-server
 
 # https://raw.githubusercontent.com/myrthings/catscatter/master/catscatter.py
 # https://github.com/FePhyFoFum/PyPHLAWD
