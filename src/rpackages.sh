@@ -60,3 +60,5 @@ rbiocinstall msa
 # install.packages("ggThemeAssist")
 # devtools::install_github("dracodoc/mischelper")
 # devtools::install_github("tylermorganwall/rayshader")
+
+remotes::install_github("business-science/modeltime", dependencies = TRUE)
