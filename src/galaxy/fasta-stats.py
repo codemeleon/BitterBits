@@ -36,7 +36,14 @@ from os import path
     default=None,
     show_default=True,
 )
-def run(fasta, stats, gap):
+@click.option(
+    "--genome_length",
+    help="Genome length (nucleotides)",
+    type=int,
+    default=102283000,
+    show_default=True,
+)
+def run(fasta, stats, gap, genome_length):
     """Generates scaffold statistics."""
     if not fasta:
         exit("Input file not given.")
@@ -104,12 +111,17 @@ def run(fasta, stats, gap):
     scaffold_lens = np.cumsum(scaffold_lens)
 
     n50_len = scaffold_lens[-1] * 0.5
-    n50_idx = np.where(scaffold_lens > n50_len)[0][0]
+    n50_idx = np.where(scaffold_lens >= n50_len)[0][0]
     n90_len = scaffold_lens[-1] * 0.9
-    n90_idx = np.where(scaffold_lens > n90_len)[0][0]
+    n90_idx = np.where(scaffold_lens >= n90_len)[0][0]
 
     to_csv = []
     to_csv.append(["Fields", "Values"])
+    if genome_length:
+        genome_len_50 = genome_length / 2.0
+        scaff_lg50 = np.where(scaffold_lens >= genome_len_50)[0][0]
+        to_csv.append(["Scaffold LG50", f"{scaff_lg50+1}"])
+        to_csv.append(["Scaffold NG50", f"{seq_len_list[scaff_lg50]}"])
     to_csv.append(["Scaffold L50", f"{n50_idx + 1}"])
     to_csv.append(["Scaffold N50", f"{seq_len_list[n50_idx]}"])
     to_csv.append(["Scaffold L90", f"{n90_idx + 1}"])
@@ -145,6 +157,10 @@ def run(fasta, stats, gap):
     n50_idx = np.where(contigs_len > n50_len)[0][0]
     n90_len = contigs_len[-1] * 0.9
     n90_idx = np.where(contigs_len > n90_len)[0][0]
+    if genome_length:
+        contig_lg50 = np.where(contigs_len >= genome_len_50)[0][0]
+        to_csv.append(["Contig NG50", f"{contig_lg50+1}"])
+        to_csv.append(["Contig LG50", f"{seq_len_list[contig_lg50]}"])
     to_csv.append(["Contig L50", f"{n50_idx + 1}"])
     to_csv.append(["Contig N50", f"{seq_len_list[n50_idx]}"])
     to_csv.append(["Contig L90", f"{n90_idx + 1}"])
