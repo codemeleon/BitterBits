@@ -12,6 +12,7 @@ pip install ete3 \
     django-stubs \
     pandas-stubs \
     cufflinks \
+    dataprep dtale autoviz \
     torch
 # Stats
 pingouin \
