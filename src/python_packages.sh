@@ -36,8 +36,8 @@ pingouin \
     metapub \
     biocode \
     PyPaperBot \
-    jedi-language-server
-
+    jedi-language-server \
+    mitoinstaller
 # https://raw.githubusercontent.com/myrthings/catscatter/master/catscatter.py
 # https://github.com/FePhyFoFum/PyPHLAWD
 
