@@ -2,7 +2,7 @@
 
 # Add relevant channels
 
-conda config --add channels r
+# conda config --add channels r
 conda config --add channels bioconda
 conda config --add channels pytorch
 
@@ -21,6 +21,7 @@ conda install blast blat mafft muscle \
     r r-irkernel \
     weblogo \
     plotnine \
+    sra-tools \
     keras
 
 conda install -c conda-forge nodejs

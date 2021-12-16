@@ -13,7 +13,9 @@ pip install ete3 \
     pandas-stubs \
     cufflinks \
     dataprep dtale autoviz \
-    torch
+    torch \
+    jbrowse-jupyter \
+    thefuck
 # Stats
 pingouin \
     tableone \
