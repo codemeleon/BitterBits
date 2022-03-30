@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+from Bio import SeqIO
+from sys import argv
+
+for rec in SeqIO.parse(argv[1], "fasta"):
+    print(f">{rec.description}\n{rec.seq.translate()}\n")
