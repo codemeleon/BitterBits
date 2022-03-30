@@ -1,5 +1,6 @@
 pip install ete3 \
     pandas \
+    geopy \
     biopython \
     scikit-learn \
     scikit-bio \
@@ -15,6 +16,8 @@ pip install ete3 \
     dataprep dtale autoviz \
     torch \
     jbrowse-jupyter \
+    gffutils \
+    ueberzug cairosvg pnglatex kaleido \
     thefuck
 # Stats
 pingouin \
