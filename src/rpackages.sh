@@ -51,6 +51,37 @@ rpkginstall ggdendro
 rpkginstall plotly
 rpkginstall readxl
 
+
+# Geolocation
+rpkginstall OpenStreetMap
+rpkginstall DT
+rpkginstall RColorBrewer
+rpkginstall mapproj
+rpkginstall sf
+rpkginstall RgoogleMaps
+rpkginstall scales
+rpkginstall rworldmap
+rpkginstall maps
+rpkginstall tidyverse
+rpkginstall rnaturalearth
+rpkginstall rnaturalearthdata
+rpkginstall rgeos
+rpkginstall ggspatial
+rpkginstall maptools
+rpkginstall leaflet
+rpkginstall sf
+rpkginstall tmap
+rpkginstall here
+rpkginstall rgdal
+rpkginstall scales
+rpkginstall flextable
+
+# install package from github
+devtools::install_github("dkahle/ggmap", ref = "tidyup")
+# install klippy for copy-to-clipboard button in code chunks
+remotes::install_github("rlesur/klippy")
+
+
 # Biocundoctor packages
 
 rbiocinstall msa
