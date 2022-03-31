@@ -51,6 +51,11 @@ rpkginstall ggdendro
 rpkginstall plotly
 rpkginstall readxl
 
+# Some ggplot2 packages
+rpkginstall ggplot2
+rpkginstall ggthemes
+rpkginstall svglite
+rpkginstall TDbook
 
 # Geolocation
 rpkginstall OpenStreetMap
