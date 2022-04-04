@@ -1,6 +1,7 @@
 pip install ete3 \
     pandas \
     geopy \
+    pyclustering \
     biopython \
     scikit-learn \
     scikit-bio \
