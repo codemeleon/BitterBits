@@ -19,12 +19,19 @@ pip install ete3 \
     jbrowse-jupyter \
     gffutils \
     ueberzug cairosvg pnglatex kaleido \
-    thefuck
+    thefuck \
+    docrepr jupyterlab_pygments \
+    evidently deepchecks tensorflow-data-validation # For deep learning data validation
+
+# For automated help string, you must execute in first shell of notebook
+# https://blog.jupyter.org/inspector-jupyterlab-404cce3e1df6
+
 # Stats
 pingouin \
     tableone \
     scikit-posthocs \
     statannot \
+    visidata \
     ipython-autoimport \
     black \
     autoplotter \
