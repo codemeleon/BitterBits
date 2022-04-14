@@ -20,7 +20,8 @@ pip install ete3 \
     gffutils \
     ueberzug cairosvg pnglatex kaleido \
     thefuck \
-    docrepr jupyterlab_pygments \
+    ploomber \ # Automation
+docrepr jupyterlab_pygments \
     evidently deepchecks tensorflow-data-validation # For deep learning data validation
 
 # For automated help string, you must execute in first shell of notebook
