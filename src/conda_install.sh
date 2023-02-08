@@ -5,24 +5,25 @@
 # conda config --add channels r
 conda config --add channels bioconda
 conda config --add channels pytorch
+conda install --channel conda-forge visidata
 
 # conda install -c anaconda gcc
 
 # Adding Tool and components
 
 conda install blast blat mafft muscle \
-    raxml fasttree \
-    bwa bowtie2 mummer kmc emboss bedtools \
-    virsorter \
-    sra-tools spades picard fastqc kraken kraken2 clustalw prokka \
-    samtools bcftools unicycler smalt \
-    biopython ruffus pysam \
-    roary ariba \
-    r r-irkernel \
-    weblogo \
-    plotnine \
-    sra-tools \
-    keras
+	raxml fasttree \
+	bwa bowtie2 mummer kmc emboss bedtools \
+	virsorter \
+	sra-tools spades picard fastqc kraken kraken2 clustalw prokka \
+	samtools bcftools unicycler smalt \
+	biopython ruffus pysam \
+	roary ariba \
+	r r-irkernel \
+	weblogo \
+	plotnine \
+	sra-tools \
+	keras
 
 conda install -c conda-forge nodejs
 conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
