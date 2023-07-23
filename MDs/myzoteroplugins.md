@@ -15,6 +15,7 @@
 - [Zotero Reading List](https://github.com/Dominic-DallOsto/zotero-reading-list)
 - [Zotero-SciHub](https://github.com/ethanwillis/zotero-scihub)
 - [LibreOffice Integration]()
+- [Zotero Figures](https://github.com/MuiseDestiny/zotero-figure#readme)
 - [scite-zotero-plugin](https://github.com/scitedotai/scite-zotero-plugin)
 - [Zotero Storage Scanner](https://github.com/retorquere/zotero-storage-scanner)
 - [Zotero Auto Index](https://github.com/retorquere/zotero-auto-index#readme)
